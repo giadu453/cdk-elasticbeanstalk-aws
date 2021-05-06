@@ -125,26 +125,26 @@ function prerequisites_with_yum() {
 		else _logger "[+] Aws CLI installed"
 	fi
 
-    curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-    sudo yum install -y nodejs@12
-    npm i -g aws-cdk
+    # curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+    # sudo yum install -y nodejs@12
+    # npm i -g aws-cdk
     
-    sudo curl --silent --location -o /usr/local/bin/kubectl \
-         https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.7/2020-07-08/bin/linux/amd64/kubectl
-    sudo chmod +x /usr/local/bin/kubectl
+    # sudo curl --silent --location -o /usr/local/bin/kubectl \
+    #      https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.7/2020-07-08/bin/linux/amd64/kubectl
+    # sudo chmod +x /usr/local/bin/kubectl
 
-    curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-    sudo mv -v /tmp/eksctl /usr/local/bin
+    # curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+    # sudo mv -v /tmp/eksctl /usr/local/bin
 
-    sudo curl --silent --location -o /usr/local/bin/fluxctl "https://github.com/fluxcd/flux/releases/download/1.20.2/fluxctl_linux_amd64"
-    sudo chmod +x /usr/local/bin/fluxctl
+    # sudo curl --silent --location -o /usr/local/bin/fluxctl "https://github.com/fluxcd/flux/releases/download/1.20.2/fluxctl_linux_amd64"
+    # sudo chmod +x /usr/local/bin/fluxctl
 
-    curl -sSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+    # curl -sSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
-    ## Install k9s
-    installing_k9s
+    # ## Install k9s
+    # installing_k9s
 
-    # upgrade_ebs_storage_AmazonLinux
+    # # upgrade_ebs_storage_AmazonLinux
     
     sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
     sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo

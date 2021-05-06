@@ -1,27 +1,6 @@
  #!/bin/bash
-export DIR="dist/ebproject"
-if [ -d "$DIR" ]; then
-    echo Already running! $DIR
-else
-    source ./.env.sh
 
-    export ElasticBeanstalk_URL=$(aws codecommit get-repository --region ${AWS_REGION} --repository-name ${Tomcat_Repo} --output json | jq '.repositoryMetadata.cloneUrlHttp' | sed "s/\"/ /g" ) 
-    echo $ElasticBeanstalk_URL
-
-    mkdir -p dist/ebproject
-    git clone $ElasticBeanstalk_URL dist/ebproject
-    cp -a Tomcat/ebproject/* dist/ebproject
-
-    cd dist/ebproject
-
-    git add .
-    git commit -m "🚀 CI/CD Pipeline >> First Commit"
-    git push
-    
-    cd ../..
-fi
-
-export DIR="dist/springboot"
+export DIR="dist/petclinic"
 if [ -d "$DIR" ]; then
     echo Already running! $DIR
 else
@@ -30,11 +9,11 @@ else
     export ElasticBeanstalk_URL=$(aws codecommit get-repository --region ${AWS_REGION} --repository-name ${Springboot_Repo} --output json | jq '.repositoryMetadata.cloneUrlHttp' | sed "s/\"/ /g" ) 
     echo $ElasticBeanstalk_URL
 
-    mkdir -p dist/springboot
-    git clone $ElasticBeanstalk_URL dist/springboot
-    cp -a Springboot/* dist/springboot
+    mkdir -p dist/petclinic
+    git clone $ElasticBeanstalk_URL dist/petclinic
+    cp -a petclinic/* dist/petclinic
 
-    cd dist/springboot
+    cd dist/petclinic
 
     git add .
     git commit -m "🚀 CI/CD Pipeline >> First Commit"

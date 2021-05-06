@@ -65,14 +65,9 @@ echo "#########################################################"
 echo
 
 
-## Build Springboot project for Tomcat
-cd Tomcat/ebproject
-mvn install -DskipTests
-cd ../..
-
-
-# Build SpringBoot project for Java + PostgreSQL
-cd Springboot
+# Build SpringBoot project for Java + Mysql
+cd petclinic
+mvn spring-javaformat:apply
 mvn install -DskipTests
 cd ..
 
