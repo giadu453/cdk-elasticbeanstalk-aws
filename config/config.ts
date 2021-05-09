@@ -40,10 +40,10 @@ export const applicationMetaData = {
   /** Config Elastic Beanstalk SpringBoot */
   EB_APP_NAME_JAVA:            'ELB301-SpringBoot',
   EB_PATH_CONFIG_JSON_JAVA:    './config/config-eb-springboot.json',
-  EB_PATH_SOURCE_ZIP_JAVA:     './petclinic/target/spring-petclinic-2.3.0.jar',
+  EB_PATH_SOURCE_ZIP_JAVA:     './Dockerrun.aws.json',
   /** https://docs.aws.amazon.com/elasticbeanstalk/latest/platforms/platforms-supported.html */
-  EB_PLATFORMS_JAVA:           '64bit Amazon Linux 2 v3.1.8 running Corretto 11',
-  EB_DESCRIPTION_JAVA:         'Application is deployed in Elastic Beanstalk with Java SpringBoot',
+  EB_PLATFORMS_JAVA:           '64bit Amazon Linux 2018.03 v2.16.7 running Docker 19.03.13-ce',
+  EB_DESCRIPTION_JAVA:         'Application is deployed in Elastic Beanstalk with Single Docker',
   
   
   SPRINGBOOT_REPO:             process.env.Springboot_Repo || '',

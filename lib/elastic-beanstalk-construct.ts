@@ -46,12 +46,12 @@ export class ElasticBeanstalkConstruct extends Construct {
     this.vpc = props.vpc;
     
     // Construct an S3 asset from the ZIP located from directory up.cd
-    const elbZipArchive = new Asset(scope, id+'-AppZip', {
-      path: props.pathSourceZIP
-    });
+    // const elbZipArchive = new Asset(scope, id+'-AppZip', {
+    //   path: props.pathSourceZIP
+    // });
     
-    this.s3artifact = elbZipArchive.bucket;
-    new CfnOutput(scope, id+'-S3BucketSourceCode', { value: elbZipArchive.s3BucketName })
+    // this.s3artifact = elbZipArchive.bucket;
+    // new CfnOutput(scope, id+'-S3BucketSourceCode', { value: elbZipArchive.s3BucketName })
 
     if(props.elbApplication === null){
       this.elbApp = new CfnApplication(scope, id+'-Application', {
@@ -110,13 +110,13 @@ export class ElasticBeanstalkConstruct extends Construct {
 
     // Create an app version from the S3 asset defined above
     // The S3 "putObject" will occur first before CF generates the template
-    this.elbAppVer = new CfnApplicationVersion(scope, id+'-AppVersion', {
-      applicationName: props.appName,
-      sourceBundle: {
-          s3Bucket: elbZipArchive.s3BucketName,
-          s3Key: elbZipArchive.s3ObjectKey,
-      },
-    }); 
+    // this.elbAppVer = new CfnApplicationVersion(scope, id+'-AppVersion', {
+    //   applicationName: props.appName,
+    //   sourceBundle: {
+    //       s3Bucket: elbZipArchive.s3BucketName,
+    //       s3Key: elbZipArchive.s3ObjectKey,
+    //   },
+    // }); 
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars  aws elasticbeanstalk list-available-solution-stacks (command)
     this.elbEnv = new CfnEnvironment(scope, id+'-Env', {
@@ -127,7 +127,7 @@ export class ElasticBeanstalkConstruct extends Construct {
       // cnamePrefix:'ep',
       description:props.description,
       // This line is critical - reference the label created in this same stack
-      versionLabel: this.elbAppVer.ref,
+      // versionLabel: this.elbAppVer.ref,
     });
     // Also very important - make sure that `app` exists before creating an app version
     this.elbAppVer.addDependsOn(this.elbApp);

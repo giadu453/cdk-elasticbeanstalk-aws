@@ -71,6 +71,8 @@ export class ElasticBeanstalkStack extends Stack {
         ['aws:elasticbeanstalk:application:environment'                 , 'spring.datasource.password'      ,applicationMetaData.RDS_MYSQL_CREDENTIAL_PAWSSWORD],
         ['aws:elasticbeanstalk:application:environment'                 , 'spring.datasource.username'      ,applicationMetaData.RDS_MYSQL_CREDENTIAL_USERNAME],
         ['aws:elasticbeanstalk:application:environment'                 , 'spring.datasource.url'           ,rdsmysql.jdbcConnection],
+        ['aws:elasticbeanstalk:application:environment'                 , 'spring.datasource.initialize'    ,'yes'],
+        ['aws:elasticbeanstalk:application:environment'                 , 'spring.profiles.active'          ,'mysql'],
         ['aws:elasticbeanstalk:application:environment'                 , 'SERVER_PORT'                     ,'5000'],
         /** Config use VPC */
         ['aws:ec2:vpc'                                                  , 'VPCId'                           ,vpc.vpc.vpcId],
