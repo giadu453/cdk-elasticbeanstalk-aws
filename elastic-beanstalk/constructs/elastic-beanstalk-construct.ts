@@ -93,7 +93,8 @@ export class ElasticBeanstalkConstruct extends Construct {
                 'rds:*',
                 's3:*',
                 'cloudwatch:*',
-                'cloudformation:*'
+                'cloudformation:*',
+                'logs:*'
             ],
           }));
 
