@@ -3,7 +3,7 @@ import {CfnApplication, CfnEnvironment, CfnApplicationVersion} from '@aws-cdk/aw
 import {IBucket }                                              from '@aws-cdk/aws-s3';
 import {Asset}                                                 from '@aws-cdk/aws-s3-assets' ;
 import {Vpc, IVpc, SecurityGroup, InstanceClass, InstanceType, InstanceSize, AmazonLinuxImage, Port, Peer}  from '@aws-cdk/aws-ec2';
-import {Role, CfnInstanceProfile, ServicePrincipal}            from '@aws-cdk/aws-iam';
+import {Role, CfnInstanceProfile, ServicePrincipal, PolicyStatement}            from '@aws-cdk/aws-iam';
 import {ApplicationLoadBalancer, ListenerAction}               from '@aws-cdk/aws-elasticloadbalancingv2';
 import { applicationMetaData }                                 from '../config/config';
 
@@ -61,10 +61,41 @@ export class ElasticBeanstalkConstruct extends Construct {
       this.elbApp = props.elbApplication;
     }
 
+    const ebServiceRole = new Role(scope, id+'-CustomEBServiceRole', {
+      assumedBy: new ServicePrincipal('elasticbeanstalk.amazonaws.com'),
+    });
+
+    ebServiceRole.addToPolicy(new PolicyStatement({
+            resources: ['*'],
+            actions: [
+                'elasticbeanstalk:*',
+                'autoscaling:*',
+                'elasticloadbalancing:*',
+                'rds:*',
+                's3:*',
+                'cloudwatch:*',
+                'cloudformation:*'
+            ],
+          }));
+
+
     // This is the role that your application will assume
     const ebRole = new Role(scope, id+'-CustomEBRole', {
       assumedBy: new ServicePrincipal('ec2.amazonaws.com'),
     });
+
+    ebRole.addToPolicy(new PolicyStatement({
+            resources: ['*'],
+            actions: [
+                'elasticbeanstalk:*',
+                'autoscaling:*',
+                'elasticloadbalancing:*',
+                'rds:*',
+                's3:*',
+                'cloudwatch:*',
+                'cloudformation:*'
+            ],
+          }));
 
     // This is the Instance Profile which will allow the application to use the above role
     const ebInstanceProfile = new CfnInstanceProfile(scope, id+'-CustomEBInstanceProfile', {

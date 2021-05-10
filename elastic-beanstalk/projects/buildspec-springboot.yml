@@ -11,4 +11,4 @@ phases:
       - mv target/spring-petclinic-2.4.5.jar app.jar
 artifacts:
   files:
-    - app.jar
+    - springboot/app.jar
