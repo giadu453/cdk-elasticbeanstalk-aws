@@ -129,6 +129,14 @@ export class ElasticBeanstalkConstruct extends Construct {
         // https://stackoverflow.com/a/55033663/6894670
         value: ebInstanceProfile.attrArn,
       },
+      {
+        namespace: 'aws:elasticbeanstalk:environment',
+        optionName: 'ServiceRole',
+        // Here you could reference an instance profile by ARN (e.g. myIamInstanceProfile.attrArn)
+        // For the default setup, leave this as is (it is assumed this role exists)
+        // https://stackoverflow.com/a/55033663/6894670
+        value: ebServiceRole.roleArn,
+      },
       
       //Config extend
       ...props.optionsOthers.map(([namespace, optionName, value]) => ({
