@@ -8,7 +8,11 @@ phases:
       - echo Building the jar
       - mvn spring-javaformat:apply
       - mvn package
-      - mv target/spring-petclinic-2.4.5.jar app.jar
+      - cd ..
+      - mv springboot/target/spring-petclinic-2.4.5.jar application.jar
 artifacts:
   files:
-    - springboot/app.jar
+    - application.jar
+cache:
+  paths:
+  - '/root/.m2/**/*'
