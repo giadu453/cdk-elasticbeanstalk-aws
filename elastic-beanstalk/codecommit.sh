@@ -10,7 +10,7 @@ else
 
     mkdir -p $DIR
     git clone $CodeCommit_URL $DIR
-    cp -a ${WORKING_DIR}/projects/* $DIR/ ; rm -r $DIR/springboot/target ; rm -r $DIR/springboot/.git
+    cp -a ${WORKING_DIR}/projects/* $DIR/ ; rm -rf $DIR/springboot/target ; rm -rf $DIR/springboot/.git
 
     cd $DIR &&           \
     git add . &&           \
