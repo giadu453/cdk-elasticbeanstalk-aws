@@ -48,7 +48,9 @@ export class CicdPipelineConstruct extends Construct {
 
       },
       buildSpec: BuildSpec.fromSourceFilename(props.pathBuildSpec),
-      cache: Cache.bucket(this.s3artifact)
+      cache: Cache.bucket(this.s3artifact, {
+        prefix: 'caches/codebuild'
+      })
     }); 
 
     // ***PIPELINE ACTIONS***
